@@ -32,16 +32,23 @@ int main(int argc, char * argv[]){
 
         shmd = shmget(KEY, sizeof(int), IPC_CREAT | IPC_EXCL | 0644);
         if (shmd < 0){
-          printf("Error shmd: %s\n", sterror(errno));
+          printf("Error shmd: %s\n", strerror(errno));
         }
         printf("shared memory created\n");
+
+        int fd = open("telephone.txt", O_CREAT | O_TRUNC | O_RDWR, 0644);
+        if (fd < 0){
+          printf("Error in open: %s\n", strerror(errno));
+        }
+        close(fd);
+        printf("file 'telephone.txt' created!\n");
       }
-      printf("shmd: %d\n, shmd);
-
-      data = shmat(shmd, 0, 0);
-
-      char[200] buffer;
-      fgets(buffer,  200, stdin); //read in the user input
+      // printf("shmd: %d\n, shmd);
+      //
+      // data = shmat(shmd, 0, 0);
+      //
+      // char[200] buffer;
+      // fgets(buffer,  200, stdin); //read in the user input
     }
     else if (!strcmp(argv[1], "-r" ){ //remove
 
