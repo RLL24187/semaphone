@@ -58,6 +58,13 @@ int main(int argc, char * argv[]){
           return 1;
         }
 
+        semop(semd, &sb, 1); //down the semaphore
+        shmd = shmget(KEY, sizeof(char*), 0);
+        if (shmd < 0) {
+            printf("Error: %s", strerror(errno));
+            return 1;
+        }
+
         int fd = open("telephone.txt", O_RDONLY); //removing doesn't require WR permissions
         if (fd < 0){
           printf("Error in open in remove: %s\n", strerror(errno));
