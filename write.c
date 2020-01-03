@@ -32,7 +32,7 @@ int main(){
   shmdt(input); //detach the segment
   close(fd);
   strcpy(lastline, input); //last line is updated to what input was
-  printf("\nthank you for your addition. it has been added!\n");
+  printf("thank you for your addition. it has been added!\n");
   sb.sem_op = 1; //done using the resourse, so we have to up the semaphore
   semop(semd, &sb, 1); //ups the semaphore
   return 0;
