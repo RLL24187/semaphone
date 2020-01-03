@@ -67,6 +67,7 @@ int main(int argc, char * argv[]){
 
         printf("The story so far: \n");
         char story[1024];
+        story[0] = '\0'; // trying to prevent seg fault by adding a null to terminate in case story is empty
         read(fd, story, 1024);
         if (strlen(story) != 0){ //try to get rid of seg fault error
           *(strrchr(story, '\n')+ 1) = '\0'; //strrchr returns a pointer to last occurrence of a character, null terminate it
