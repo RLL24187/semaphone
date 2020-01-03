@@ -8,7 +8,7 @@ int main(int argc, char * argv[]){
     union semun su;
     su.val = 1;
     struct sembuf sb;
-    sb.sem-num = 0; //this is the semaphore number you want to use
+    sb.sem_num = 0; //this is the semaphore number you want to use
     //sb.sem_flg = SEM_UNDO;
     sb.sem_op = -1; //downs the semaphore
     if (!strcmp(argv[1], "-c" ){ //create
@@ -68,7 +68,7 @@ int main(int argc, char * argv[]){
         printf("The story so far: \n");
         char story[1024];
         read(fd, story, 1024);
-        *(strrchr(story, '\n')+ 1 = '\0') //strrchr returns a pointer to last occurrence of a character, null terminate it
+        *(strrchr(story, '\n')+ 1 = '\0'); //strrchr returns a pointer to last occurrence of a character, null terminate it
         printf("%s\n", story);
         close(fd);
         // shmdt
