@@ -13,11 +13,13 @@ int main(){
   semd = semget(KEY, 1, 0);
   if (semd < 0){
     printf("Error in write.c semget: %s\n", strerror(errno));
+    return 1; //should not continue if the user hasn't created anything yet
   }
   semop(semd, &sb, 1); //down the semaphore
   shmd = shmget(KEY, sizeof(char *), 0);
   if (shmd < 0){
     printf("Error in write.c shmget: %s\n", strerror(errno));
+    return 1;
   }
 
   int fd = open("telephone.txt", O_WRONLY | O_APPEND);
@@ -29,6 +31,7 @@ int main(){
   write(fd, input, strlen(input));
   shmdt(input); //detach the segment
   close(fd);
+  strcpy(lastline, input); //last line is updated to what input was
   printf("\nthank you for your addition. it has been added!\n");
   sb.sem_op = 1; //done using the resourse, so we have to up the semaphore
   semop(semd, &sb, 1); //ups the semaphore
