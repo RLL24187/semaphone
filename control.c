@@ -1,18 +1,4 @@
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <dirent.h>
-#include <signal.h>
-#include <sys/wait.h>
-#include <sys/ipc.h>
-#include <sys/shm.h>
-#include <sys/types.h>
-
+#include "phone.h"
 int main(int argc, char * argv[]){
   if (argc > 1){
     if (!strcmp(argv[1], "-c" ){ //create
