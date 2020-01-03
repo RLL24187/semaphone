@@ -6,13 +6,14 @@
 #include <unistd.h>
 #include <time.h>
 #include <dirent.h>
+#include <signal.h>
 
 #include <sys/stat.h>
-#include <signal.h>
 #include <sys/wait.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/types.h>
+#include <sys/sem.h>
 
 #define KEY 24601
 
