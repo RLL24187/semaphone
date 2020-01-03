@@ -22,7 +22,7 @@ int main(int argc, char * argv[]){
         semd = semget(KEY, 1, 0); //the 1 means that you want 1 semaphore
         v = semctl(semd, 0, GETVAL, 0); //gets the value of the semaphore.
         printf("semctl returned: %d\n", v);
-        return 1;
+        // return 1;
       }
 
       else{ //file didn't exist yet
