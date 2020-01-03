@@ -34,14 +34,14 @@ int main(int argc, char * argv[]){
         shmd = shmget(KEY, sizeof(char *), IPC_CREAT | IPC_EXCL | 0644);
         if (shmd < 0){
           printf("Error shmd: %s\n", strerror(errno));
-          return 1;
+          // return 1;
         }
         printf("shared memory created!\n");
 
         int fd = open("telephone.txt", O_CREAT | O_TRUNC | O_RDWR, 0644);
         if (fd < 0){
           printf("Error in open in create: %s\n", strerror(errno));
-          return 1;
+          // return 1;
         }
         close(fd);
         printf("file 'telephone.txt' created!\n");
