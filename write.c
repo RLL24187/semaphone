@@ -24,7 +24,7 @@ int main(){
 
   int fd = open("telephone.txt", O_WRONLY | O_APPEND);
   if (fd < 0){
-    printf("Error in open in write.c: \n", strerror(errno));
+    printf("Error in open in write.c: %s\n", strerror(errno));
     return 1;
   }
   char *lastline = shmat(shmd, 0, 0); //attach shared memory to an available address (contain size of last line)
