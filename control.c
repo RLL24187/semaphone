@@ -25,7 +25,7 @@ int main(int argc, char * argv[]){
         // return 1;
       }
 
-      else{ //file didn't exist yet
+      // else{ //file didn't exist yet
 
         v = semctl(semd, 0, SETVAL, su);
         printf("semctl returned: %d\n", v); //value of semaphore
@@ -45,7 +45,7 @@ int main(int argc, char * argv[]){
         }
         close(fd);
         printf("file 'telephone.txt' created!\n");
-      }
+      // }
     }
     else if (!strcmp(argv[1], "-r" )){ //remove
       // Remove the shared memory, the semaphore and the story.
@@ -61,7 +61,7 @@ int main(int argc, char * argv[]){
         semop(semd, &sb, 1); //down the semaphore
         shmd = shmget(KEY, sizeof(char*), 0);
         if (shmd < 0) {
-            printf("Error: %s", strerror(errno));
+            printf("Error in shmget in remove: %s", strerror(errno));
             return 1;
         }
 
