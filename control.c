@@ -21,14 +21,14 @@ int main(int argc, char * argv[]){
         printf("Error semd create: %s\n", strerror(errno));
         semd = semget(KEY, 1, 0); //the 1 means that you want 1 semaphore
         v = semctl(semd, 0, GETVAL, 0); //gets the value of the semaphore.
-        printf("semctl returned: %d\n", v);
+        // printf("semctl returned: %d\n", v);
         return 1;
       }
 
       else{ //file didn't exist yet
 
         v = semctl(semd, 0, SETVAL, su);
-        printf("semctl returned: %d\n", v); //value of semaphore
+        // printf("semctl returned: %d\n", v); //value of semaphore
         printf("semaphore created!\n");
 
         shmd = shmget(KEY, sizeof(char *), IPC_CREAT | IPC_EXCL | 0644);
@@ -95,6 +95,7 @@ int main(int argc, char * argv[]){
       int fd = open("telephone.txt", O_RDONLY); //removing doesn't require WR permissions
       if (fd < 0){
         printf("Error in open in view: %s\n", strerror(errno));
+        return 1;
       }
       printf("The story so far: \n");
       char story[1024];
