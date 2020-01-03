@@ -74,9 +74,10 @@ int main(int argc, char * argv[]){
         }
         printf("%s\n", story);
         close(fd);
-        // shmdt
         shmctl(shmd,IPC_RMID, 0);
         printf("shared memory deleted\n");
+        remove("telephone.txt");
+        printf("story file removed\n");
         semctl(semd,IPC_RMID, 0);
         printf("semaphore deleted\n");
         // Detach the segment from a variable (once per process) -- shmdt (shared memory detach)
