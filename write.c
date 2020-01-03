@@ -12,17 +12,21 @@ int main(){
   printf("trying to get in...\n");
   semd = semget(KEY, 1, 0);
   if (semd < 0){
-    printf("Error in write.c semget: %s\n", strerror(errno));
+    printf("Error in semget in write.c: %s\n", strerror(errno));
     return 1; //should not continue if the user hasn't created anything yet
   }
   semop(semd, &sb, 1); //down the semaphore
   shmd = shmget(KEY, sizeof(char *), 0);
   if (shmd < 0){
-    printf("Error in write.c shmget: %s\n", strerror(errno));
+    printf("Error in shmget in write.c: %s\n", strerror(errno));
     return 1;
   }
 
   int fd = open("telephone.txt", O_WRONLY | O_APPEND);
+  if (fd < 0){
+    printf("Error in open in write.c: \n", );
+    return 1;
+  }
   char *lastline = shmat(shmd, 0, 0); //attach shared memory to an available address (contain size of last line)
   printf("last addition: %s\n", lastline);
   char input[1024];

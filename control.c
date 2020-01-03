@@ -22,10 +22,10 @@ int main(int argc, char * argv[]){
         semd = semget(KEY, 1, 0); //the 1 means that you want 1 semaphore
         v = semctl(semd, 0, GETVAL, 0); //gets the value of the semaphore.
         printf("semctl returned: %d\n", v);
-        // return 1;
+        return 1;
       }
 
-      // else{ //file didn't exist yet
+      else{ //file didn't exist yet
 
         v = semctl(semd, 0, SETVAL, su);
         printf("semctl returned: %d\n", v); //value of semaphore
@@ -34,18 +34,18 @@ int main(int argc, char * argv[]){
         shmd = shmget(KEY, sizeof(char *), IPC_CREAT | IPC_EXCL | 0644);
         if (shmd < 0){
           printf("Error shmd: %s\n", strerror(errno));
-          // return 1;
+          return 1;
         }
         printf("shared memory created!\n");
 
         int fd = open("telephone.txt", O_CREAT | O_TRUNC | O_RDWR, 0644);
         if (fd < 0){
           printf("Error in open in create: %s\n", strerror(errno));
-          // return 1;
+          return 1;
         }
         close(fd);
         printf("file 'telephone.txt' created!\n");
-      // }
+      }
     }
     else if (!strcmp(argv[1], "-r" )){ //remove
       // Remove the shared memory, the semaphore and the story.
@@ -61,8 +61,8 @@ int main(int argc, char * argv[]){
         semop(semd, &sb, 1); //down the semaphore
         shmd = shmget(KEY, sizeof(char*), 0);
         if (shmd < 0) {
-            printf("Error in shmget in remove: %s", strerror(errno));
-            return 1;
+          printf("Error in shmget in remove: %s", strerror(errno));
+          return 1;
         }
 
         int fd = open("telephone.txt", O_RDONLY); //removing doesn't require WR permissions
