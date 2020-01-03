@@ -11,7 +11,7 @@ int main(int argc, char * argv[]){
     sb.sem_num = 0; //this is the semaphore number you want to use
     //sb.sem_flg = SEM_UNDO;
     sb.sem_op = -1; //downs the semaphore
-    if (!strcmp(argv[1], "-c" ){ //create
+    if (!strcmp(argv[1], "-c" )){ //create
       // If creating (command line argument: -c):
       // Should make the shared memory, semaphore and file (open the file with the truncate flag).
       // Set any values that are needed.
