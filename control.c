@@ -18,7 +18,7 @@ int main(int argc, char * argv[]){
       // char input[3];
       semd = semget(KEY, 1, IPC_CREAT | IPC_EXCL | 0644);  //excl makes sure it's not created again
       if (semd < 0){ //file already exists
-        printf("Error semd create: %s\n", sterror(errno));
+        printf("Error semd create: %s\n", strerror(errno));
         semd = semget(KEY, 1, 0); //the 1 means that you want 1 semaphore
         v = semctl(semd, 0, GETVAL, 0); //gets the value of the semaphore.
         printf("semctl returned: %d\n", v);
@@ -50,7 +50,7 @@ int main(int argc, char * argv[]){
       // char[200] buffer;
       // fgets(buffer,  200, stdin); //read in the user input
     }
-    else if (!strcmp(argv[1], "-r" ){ //remove
+    else if (!strcmp(argv[1], "-r" )){ //remove
       // Remove the shared memory, the semaphore and the story.
       // Display the full contents of the story.
       // This should wait until the semaphore is available.
@@ -79,9 +79,9 @@ int main(int argc, char * argv[]){
         // Detach the segment from a variable (once per process) -- shmdt (shared memory detach)
         // Remove the segment (happens once, not once per process) -- shmctl (shared memory control)
     }
-    else if (!strcmp(argv[1], "-v" ){ //view
+    else if (!strcmp(argv[1], "-v" )){ //view
 
     }
   }
-
+  return 0;
 }
