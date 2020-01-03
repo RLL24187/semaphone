@@ -101,7 +101,7 @@ int main(int argc, char * argv[]){
     }
   }
   else{
-    printf("no argument given. please enter -c (create), -r (remove), or -v (view)\n", );
+    printf("no argument given. please enter -c (create), -r (remove), or -v (view)\n");
   }
   return 0;
 }
